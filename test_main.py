@@ -12,12 +12,11 @@ class Test(unittest.TestCase):
         """Função que testa se a saída do programa corresponde ao que foi especificado."""
         # Lista de valores que serão retornados pela função input.
         input_returns = [str(random.randint(-100, 100))]
-        print('Testando com', input_returns[0])
         with patch('builtins.input',
                    side_effect=input_returns) as mock_input, patch(
                        'builtins.print') as mock_print:
             main.main()
-            assert mock_input.call_count == 1, 'Você deve chamar input uma vez.'
+            assert mock_input.call_count == 1
             mock_print.assert_called_with(
                 f'O número informado foi {input_returns[0]}')
 
