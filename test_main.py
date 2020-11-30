@@ -1,25 +1,44 @@
 """Esse módulo é utilizado para realizar testes automáticos dos exercícios."""
 
 import unittest
-import random
 from unittest.mock import patch
 import main
 
 
 class Test(unittest.TestCase):
     """Classe para agregar os métodos que serão utilizados para testar."""
-    def test_main(self):
-        """Função que testa se a saída do programa corresponde ao que foi especificado."""
+    def test_0(self):
+        """Função que testa o 0."""
         # Lista de valores que serão retornados pela função input.
-        input_returns = [str(random.randint(-100, 100))]
-        print('Testando com', input_returns[0])
+        input_returns = ['0']
         with patch('builtins.input',
                    side_effect=input_returns) as mock_input, patch(
                        'builtins.print') as mock_print:
             main.main()
-            assert mock_input.call_count == 1, 'Você deve chamar input uma vez.'
-            mock_print.assert_called_with(
-                f'O número informado foi {input_returns[0]}')
+            assert mock_input.call_count == 1
+            mock_print.assert_called_with('O número informado foi 0')
+
+    def test_10(self):
+        """Função que testa o 10."""
+        # Lista de valores que serão retornados pela função input.
+        input_returns = ['10']
+        with patch('builtins.input',
+                   side_effect=input_returns) as mock_input, patch(
+                       'builtins.print') as mock_print:
+            main.main()
+            assert mock_input.call_count == 1
+            mock_print.assert_called_with('O número informado foi 10')
+
+    def test_1234(self):
+        """Função que testa o 1234."""
+        # Lista de valores que serão retornados pela função input.
+        input_returns = ['1234']
+        with patch('builtins.input',
+                   side_effect=input_returns) as mock_input, patch(
+                       'builtins.print') as mock_print:
+            main.main()
+            assert mock_input.call_count == 1
+            mock_print.assert_called_with('O número informado foi 1234')
 
 
 if __name__ == '__main__':
